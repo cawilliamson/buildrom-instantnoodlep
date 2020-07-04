@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV GIT_SSH_COMMAND "ssh -i /var/tmp/buildrom/includes/common/id_rsa -o StrictHostKeyChecking=no"
+ENV GIT_SSH_COMMAND "ssh -o StrictHostKeyChecking=no"
 ENV HOME /var/tmp
 ENV LC_ALL C
 ENV TARGET_BUILD_VARIANT user

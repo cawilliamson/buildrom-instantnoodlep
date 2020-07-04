@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if [ $# -ne 2 ]; then
-  echo "You must provide two arguments: [ $(ls deps | grep -v common | tr '\n' ' ')] [ $(ls deps/crownlte | grep -v common | tr '\n' ' ')]"
+  echo "You must provide two arguments: [ $(ls deps | grep -v common | tr '\n' ' ')] [ $(ls deps/instantnoodlep | grep -v common | tr '\n' ' ')]"
   exit 1
 fi
 
