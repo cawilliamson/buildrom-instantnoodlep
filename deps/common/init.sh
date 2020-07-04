@@ -11,16 +11,14 @@ source "/var/tmp/buildrom/includes/${DEVICE}/${ROM}/repos.sh"
 # change dir
 cd /usr/src/rom || exit
 
+# set git config
+git config --global color.ui false
+
 # fetch android sources
 repo init --depth=1 -u "${ROM_REPO}" -b "${ROM_BRANCH}"
 mkdir -p .repo/local_manifests/
 cp -v /var/tmp/buildrom/includes/"${DEVICE}"/"${ROM}"/local_manifest*.xml .repo/local_manifests/
 repo sync -c -j"$(nproc --all)" --force-sync --no-clone-bundle --no-tags
-
-# apply patches
-#set -e
-for file in /var/tmp/buildrom/includes/"${DEVICE}"/"${ROM}"/*.patch; do patch -p1 < "${file}"; done
-#set +e
 
 # build rom
 # shellcheck source=/dev/null
