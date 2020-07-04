@@ -29,6 +29,6 @@ source build/envsetup.sh
 source "/var/tmp/buildrom/includes/${DEVICE}/${ROM}/build.sh"
 
 # copy output zip
-rm -fv /usr/src/rom/out/target/product/*lte/*ota*.zip
+rm -fv /usr/src/rom/out/target/product/instantnoodle*/*ota*.zip
 mkdir -p /var/tmp/buildrom/out
-cp -v /usr/src/rom/out/target/product/*lte/*.zip /var/tmp/buildrom/out
+cp -v /usr/src/rom/out/target/product/instantnoodle*/*.zip /var/tmp/buildrom/out
