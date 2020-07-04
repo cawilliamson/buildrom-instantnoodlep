@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-lunch derp_instantnoodlep-userdebug
+lunch aosp_instantnoodlep-userdebug
 mka kronic -j"$(nproc --all)"
