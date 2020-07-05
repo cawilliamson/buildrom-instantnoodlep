@@ -1,2 +1,4 @@
 deps/common/id_rsa
 includes/
+src/
+tmp/
