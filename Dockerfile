@@ -28,6 +28,7 @@ RUN apt update && apt -y --no-install-recommends install \
   libgl1-mesa-dev \
   libjpeg8-dev \
   liblz4-tool \
+  libncurses5 \
   libssl-dev \
   libx11-dev \
   libxml2-dev \
