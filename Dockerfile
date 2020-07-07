@@ -54,6 +54,9 @@ RUN git config --global user.email "root@localhost"
 RUN git config --global user.name "Docker Container"
 
 RUN curl https://bootstrap.pypa.io/get-pip.py | python && pip install networkx
+
+RUN chmod 777 /var/tmp
+
 RUN curl -L -o /usr/bin/repo http://commondatastorage.googleapis.com/git-repo-downloads/repo && chmod +x /usr/bin/repo
 
 RUN mkdir -p /usr/src/rom
