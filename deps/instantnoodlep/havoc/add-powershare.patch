@@ -1,0 +1,60 @@
+--- /dev/null
++++ b/device/havoc/sepolicy/common/dynamic/hal_lineage_powershare.te
+@@ -0,0 +1,8 @@
++# HWBinder IPC from client to server
++binder_call(hal_lineage_powershare_client, hal_lineage_powershare_server)
++
++add_hwservice(hal_lineage_powershare_server, hal_lineage_powershare_hwservice)
++allow hal_lineage_powershare_client hal_lineage_powershare_hwservice:hwservice_manager find;
++
++# Allow binder communication with platform_app
++binder_call(hal_lineage_powershare, platform_app)
+--- a/device/havoc/sepolicy/common/dynamic/hwservice.te
++++ b/device/havoc/sepolicy/common/dynamic/hwservice.te
+@@ -1,4 +1,5 @@
+ type hal_lineage_camera_motor_hwservice, hwservice_manager_type;
+ type hal_lineage_fod_hwservice, hwservice_manager_type;
+ type hal_lineage_livedisplay_hwservice, hwservice_manager_type;
++type hal_lineage_powershare_hwservice, hwservice_manager_type;
+ type hal_lineage_touch_hwservice, hwservice_manager_type;
+--- a/device/havoc/sepolicy/common/dynamic/hwservice_contexts
++++ b/device/havoc/sepolicy/common/dynamic/hwservice_contexts
+@@ -10,6 +10,7 @@ vendor.lineage.livedisplay::IPictureAdjustment                          u:object
+ vendor.lineage.livedisplay::IReadingEnhancement                         u:object_r:hal_lineage_livedisplay_hwservice:s0
+ vendor.lineage.livedisplay::ISunlightEnhancement                        u:object_r:hal_lineage_livedisplay_hwservice:s0
+ vendor.lineage.power::ILineagePower                                     u:object_r:hal_power_hwservice:s0
++vendor.lineage.powershare::IPowerShare                                  u:object_r:hal_lineage_powershare_hwservice:s0
+ vendor.lineage.touch::IGloveMode                                        u:object_r:hal_lineage_touch_hwservice:s0
+ vendor.lineage.touch::IKeyDisabler                                      u:object_r:hal_lineage_touch_hwservice:s0
+ vendor.lineage.touch::IStylusMode                                       u:object_r:hal_lineage_touch_hwservice:s0
+--- a/device/havoc/sepolicy/common/private/platform_app.te
++++ b/device/havoc/sepolicy/common/private/platform_app.te
+@@ -6,3 +6,6 @@
+ 
+ # Allow LiveDisplay HAL service to be found
+ hal_client_domain(platform_app, hal_lineage_livedisplay)
++
++# Allow PowerShare HAL service to be found
++hal_client_domain(platform_app, hal_lineage_powershare)
+--- a/device/havoc/sepolicy/common/private/system_server.te
++++ b/device/havoc/sepolicy/common/private/system_server.te
+@@ -4,3 +4,4 @@ allow system_server storage_stub_file:dir getattr;
+ hal_client_domain(system_server, hal_lineage_fod)
+ hal_client_domain(system_server, hal_lineage_livedisplay)
+ hal_client_domain(system_server, hal_lineage_touch)
++hal_client_domain(system_server, hal_lineage_powershare)
+--- a/device/havoc/sepolicy/common/public/attributes
++++ b/device/havoc/sepolicy/common/public/attributes
+@@ -3,3 +3,4 @@ hal_attribute(lineage_camera_motor)
+ hal_attribute(lineage_fod)
+ hal_attribute(lineage_livedisplay)
+ hal_attribute(lineage_touch)
++hal_attribute(lineage_powershare)
+--- /dev/null
++++ b/device/havoc/sepolicy/common/vendor/hal_lineage_powershare_default.te
+@@ -0,0 +1,5 @@
++type hal_lineage_powershare_default, domain;
++hal_server_domain(hal_lineage_powershare_default, hal_lineage_powershare)
++
++type hal_lineage_powershare_default_exec, exec_type, vendor_file_type, file_type;
++init_daemon_domain(hal_lineage_powershare_default)
