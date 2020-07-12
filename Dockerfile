@@ -19,6 +19,7 @@ RUN apt update && apt -y --no-install-recommends install \
   g++-multilib \
   imagemagick \
   iputils-ping \
+  kmod \
   lib32ncurses5-dev \
   lib32z1-dev \
   libbz2-dev \
