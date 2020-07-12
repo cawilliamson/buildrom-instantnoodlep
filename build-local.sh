@@ -27,7 +27,7 @@ docker build -t chrisawcom/buildrom .
 
 # docker run
 echo "[*] Starting ROM build"
-docker run --user $(id -u):$(id -g) --privileged --tty --rm -e DEVICE="${1}" -e ROM="${2}" -v "$(pwd)/src:/usr/src/rom" -v "$(pwd):/var/tmp/buildrom" -v "$(pwd)/tmp/${1}/${2}:/var/tmp/buildrom/out" chrisawcom/buildrom
+docker run --privileged --tty --rm -e DEVICE="${1}" -e ROM="${2}" -v "$(pwd)/src:/usr/src/rom" -v "$(pwd):/var/tmp/buildrom" -v "$(pwd)/tmp/${1}/${2}:/var/tmp/buildrom/out" chrisawcom/buildrom
 
 # mount gdrive
 #echo "[*] Mounting Google Drive"
