@@ -12,12 +12,12 @@ fi
 
 # generate includes dir
 echo "[*] Generating includes dir"
-mkdir -p includes/common includes/"${1}"/"${2}"/
-cp -fv deps/common/* includes/common/
+mkdir -p tmp/includes/common includes/"${1}"/"${2}"/
+cp -fv deps/common/* tmp/includes/common/
 if [[ "${2}" != *"lineage"* ]]; then
-  cp -fv deps/"${1}"/common/local_manifest_aosp.xml includes/"${1}"/"${2}"/
+  cp -fv deps/"${1}"/common/local_manifest_aosp.xml tmp/includes/"${1}"/"${2}"/
 else
-  cp -fv deps/"${1}"/common/local_manifest_lineage.xml includes/"${1}"/"${2}"/
+  cp -fv deps/"${1}"/common/local_manifest_lineage.xml tmp/includes/"${1}"/"${2}"/
 fi
 cp -fv deps/"${1}"/"${2}"/* includes/"${1}"/"${2}"/
 
@@ -27,7 +27,7 @@ docker build -t chrisawcom/buildrom .
 
 # docker run
 echo "[*] Starting ROM build"
-docker run --privileged --tty --rm -e DEVICE="${1}" -e ROM="${2}" -v "$(pwd)/src:/usr/src/rom" -v "$(pwd):/var/tmp/buildrom" -v "$(pwd)/tmp/${1}/${2}:/var/tmp/buildrom/out" chrisawcom/buildrom
+docker run --privileged --tty --rm -e DEVICE="${1}" -e ROM="${2}" -v "$(pwd)/tmp/src:/usr/src/rom" -v "$(pwd):/var/tmp/buildrom" -v "$(pwd)/out:/var/tmp/buildrom/out" chrisawcom/buildrom
 
 # mount gdrive
 #echo "[*] Mounting Google Drive"
@@ -39,4 +39,4 @@ docker run --privileged --tty --rm -e DEVICE="${1}" -e ROM="${2}" -v "$(pwd)/src
 #mv tmp/"${1}"/"${2}"/*.zip "${HOME}"/Drive/Public/ROMs/"${1}"/"${2}"/
 
 # clean includes folder
-rm -frv includes/"${1}"/"${2}"
+rm -frv tmp/includes/"${1}"/"${2}"
