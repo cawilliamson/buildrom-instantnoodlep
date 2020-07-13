@@ -62,4 +62,4 @@ RUN curl -L -o /usr/bin/repo http://commondatastorage.googleapis.com/git-repo-do
 
 RUN mkdir -p /usr/src/rom
 
-ENTRYPOINT [ "bash", "/var/tmp/buildrom/includes/common/init.sh" ]
+ENTRYPOINT [ "bash", "/var/tmp/buildrom/tmp/includes/common/init.sh" ]
