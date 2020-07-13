@@ -12,14 +12,14 @@ fi
 
 # generate includes dir
 echo "[*] Generating includes dir"
-mkdir -p tmp/includes/common includes/"${1}"/"${2}"/
+mkdir -p tmp/includes/common tmp/includes/"${1}"/"${2}"/
 cp -fv deps/common/* tmp/includes/common/
 if [[ "${2}" != *"lineage"* ]]; then
   cp -fv deps/"${1}"/common/local_manifest_aosp.xml tmp/includes/"${1}"/"${2}"/
 else
   cp -fv deps/"${1}"/common/local_manifest_lineage.xml tmp/includes/"${1}"/"${2}"/
 fi
-cp -fv deps/"${1}"/"${2}"/* includes/"${1}"/"${2}"/
+cp -fv deps/"${1}"/"${2}"/* tmp/includes/"${1}"/"${2}"/
 
 # run docker build
 echo "[*] Building docker container"
