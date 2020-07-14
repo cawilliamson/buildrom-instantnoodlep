@@ -42,7 +42,7 @@
  hal_client_domain(system_server, hal_lineage_fod)
  hal_client_domain(system_server, hal_lineage_livedisplay)
  hal_client_domain(system_server, hal_lineage_touch)
-+hal_client_domain(system_server, hal_lineage_powershare
++hal_client_domain(system_server, hal_lineage_powershare)
 --- a/device/havoc/sepolicy/common/public/attributes
 +++ b/device/havoc/sepolicy/common/public/attributes
 @@ -3,3 +3,4 @@ hal_attribute(lineage_camera_motor)
