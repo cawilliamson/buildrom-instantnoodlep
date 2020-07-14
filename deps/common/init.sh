@@ -21,7 +21,9 @@ cp -v /var/tmp/buildrom/tmp/includes/"${DEVICE}"/"${ROM}"/local_manifest*.xml .r
 repo sync -c -j"$(nproc --all)" --force-sync --no-clone-bundle --no-tags
 
 # apply patches
-for file in /var/tmp/buildrom/tmp/includes/"${DEVICE}"/"${ROM}"/*.patch; do patch -p1 < "${file}"; done
+for file in /var/tmp/buildrom/tmp/includes/"${DEVICE}"/"${ROM}"/*.patch; do
+  patch -p1 --forward < "${file}" || true
+done
 
 # build rom
 # shellcheck source=/dev/null
